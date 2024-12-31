@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 Hacker-Themed Greeting Card - UMA International</title>
+    <style>
+        /* Global styles for hacker theme */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #0f0f0f;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #00ff00; /* Neon green for hacker effect */
+            animation: backgroundChange 10s infinite alternate;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .header {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ff9800; /* Indian flag orange */
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subheader {
+            font-size: 24px;
+            color: #009688; /* Indian flag green */
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .message {
+            font-size: 22px;
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .footer {
+            font-size: 18px;
+            color: #b0b0b0;
+        }
+
+        .footer a {
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Background color change */
+        @keyframes backgroundChange {
+            0% { background-color: #1b5e20; } /* Dark Green - Indian theme */
+            25% { background-color: #f44336; } /* Indian Flag Red */
+            50% { background-color: #2196f3; } /* Blue - Hacker's World */
+            75% { background-color: #ffc107; } /* Bright Yellow */
+            100% { background-color: #0d47a1; } /* Indian Flag Blue */
+        }
+
+        /* Game section */
+        .game-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            border: 2px solid #00ff00; /* Neon border */
+        }
+
+        .game-container h3 {
+            margin-bottom: 20px;
+            color: #00ff00;
+            text-transform: uppercase;
+            font-size: 26px;
+        }
+
+        .game-button {
+            background-color: #ff5722; /* Hacker red */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .game-button:hover {
+            background-color: #ff9800;
+        }
+
+        .game-result {
+            font-size: 22px;
+            color: #4CAF50;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .game-input {
+            padding: 10px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #333;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            margin-top: 10px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="header">
+            UMA INTERNATIONAL 2025
+        </div>
+        <div class="subheader">
+            Your Ticket to Adventure Awaits
+        </div>
+        <div class="message">
+            Welcome to UMA International's ticketing system for 2025. As part of our celebration, we are giving away limited Goa tickets to lucky winners.
+            Enter the correct code, and you could be on your way to an exciting adventure in Goa!
+            Hurry, there are only <span id="ticketCount">1000</span> Goa tickets available!
+        </div>
+        
+        <div class="footer">
+            From all of us at <strong>UMA International</strong><br>
+            <a href="https://www.uma-international.com" target="_blank">Visit Our Website</a>
+        </div>
+
+        <!-- Game Section -->
+        <div class="game-container">
+            <h3>Hack the System & Win a Goa Ticket!</h3>
+            <input type="text" class="game-input" id="userCode" placeholder="Enter Code Here" />
+            <button class="game-button" onclick="playGame()">Submit Code</button>
+            <div class="game-result" id="gameResult"></div>
+        </div>
+    </div>
+
+    <script>
+        let ticketsAvailable = 1000;  // Track number of tickets left
+
+        function playGame() {
+            const userCode = document.getElementById("userCode").value;
+            const gameResult = document.getElementById("gameResult");
+            const ticketCount = document.getElementById("ticketCount");
+
+            // Correct code to win a ticket
+            const correctCode = "GOA2025"; 
+
+            if (ticketsAvailable <= 0) {
+                gameResult.textContent = "Sorry, all tickets have been claimed!";
+                gameResult.style.color = "#ff5722"; // Red for failure
+                return;
+            }
+
+            if (userCode === correctCode) {
+                ticketsAvailable--;  // Decrease the number of available tickets
+                ticketCount.textContent = ticketsAvailable; // Update the displayed ticket count
+
+                gameResult.textContent = `Congratulations! You won a Goa ticket!`;
+                gameResult.style.color = "#4CAF50"; // Green for success
+            } else {
+                gameResult.textContent = "Incorrect code! Try again.";
+                gameResult.style.color = "#ff5722"; // Red for failure
+            }
+
+            document.getElementById("userCode").value = ""; // Clear input field
+        }
+    </script>
+
+</body>
+</html>
